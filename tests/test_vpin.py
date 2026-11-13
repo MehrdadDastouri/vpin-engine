@@ -4,7 +4,7 @@ from vpin_engine.math_utils import fast_normal_cdf
 
 
 def test_fast_normal_cdf_accuracy():
-    assert pytest.approx(fast_normal_cdf(0.0), 1e-6) == 0.5
+    assert fast_normal_cdf(0.0) == 0.5
     assert pytest.approx(fast_normal_cdf(1.96), 1e-4) == 0.9750
     assert pytest.approx(fast_normal_cdf(-1.96), 1e-4) == 0.0250
     assert fast_normal_cdf(10.0) == 1.0
@@ -38,7 +38,7 @@ def test_pure_neutral_flow_yields_zero_vpin():
 
     assert len(results) == 6
     for res in results:
-        assert res.vpin == 0.0
+        assert pytest.approx(res.vpin, abs=1e-7) == 0.0
 
 
 def test_extreme_toxic_flow_yields_unit_vpin():

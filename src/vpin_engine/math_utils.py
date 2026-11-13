@@ -8,7 +8,7 @@ def fast_normal_cdf(z: float) -> float:
     Rational approximation of standard normal CDF (Abramowitz & Stegun 26.2.17).
     Executes in under 20ns without external library dynamic link overhead.
     """
-    if math.isnan(z):
+    if math.isnan(z) or z == 0.0:
         return 0.5
     if z > 8.0:
         return 1.0
